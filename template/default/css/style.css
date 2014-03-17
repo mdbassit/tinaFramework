@@ -1,0 +1,143 @@
+body {
+    background-color: #fff;
+}
+
+body, input, textarea, select, td, th {
+    font-family: Sans-serif;
+	font-size: 1em;
+	color: #333;
+}
+
+a {
+    color: #0f3cbe;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+table, th, td {
+    border: 0;
+    border-collapse: collapse;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+
+* html .clearfix {
+	height: 1%;
+}
+ 
+.clearfix {
+	display: block;
+}
+
+.content {
+    width: 780px;
+    margin: 0 auto;
+}
+
+.information {
+    background-color:#e8ffeb;
+    border:1px solid #8bce90;
+    color: #37703a;
+    padding:10px;
+    display: block;
+}
+
+.warning {
+    background-color:#ffeded;
+    border:1px solid #ce908b;
+    color: #923221;
+    padding:10px;
+    display: block;
+}
+
+.buttons {
+    margin: 20px 0 0 150px;
+}
+
+.toolbar .itemcount {
+    float: right;
+}
+
+.toolbar a.button,
+.buttons a.button {
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: #666;
+    color: #fff;
+    font-size: 0.8em;
+}
+
+.toolbar a.button:hover,
+.buttons a.button:hover {
+    text-decoration: none;
+    background-color: #999;
+}
+
+.buttons a.button.cancel {
+    background-color: #999;
+}
+
+.buttons a.button.cancel:hover {
+    background-color: #ccc;
+}
+
+table.people {
+    width: 100%;
+    margin: 10px 0;
+}
+
+table.people tr.record {
+    border-bottom: 1px solid #eee;
+}
+
+table.people tr.record:hover {
+    background-color: #f6f6f6;
+}
+
+table.people th, table.people td {
+    padding: 5px;
+}
+
+table.people th {
+    background-color: #eee;
+    font-size: 0.9em;
+    text-align: left;
+}
+
+table.people th.action, table.people td.action {
+    text-align: center;
+}
+
+fieldset {
+    border: 1px solid #ddd;
+    padding: 20px;
+}
+
+label {
+    display: inline-block;
+    width: 150px;
+    margin-bottom: 15px;
+}
+
+input {
+    width: 350px;
+}
+
+.required:after {
+	content: "*";
+    color: #c10000;
+}
