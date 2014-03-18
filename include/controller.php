@@ -13,7 +13,15 @@ defined('tinaFramework') or die;
 
 class Controller 
 {
+    /**
+     *  The variables to be assigned to the view
+     */
     private $vars = array();
+    
+    /**
+     *  This is set to the view name by index.php
+     */
+    public $view;
     
     
     /**
@@ -47,12 +55,12 @@ class Controller
     /**
      * Displays the view and the template.
      * 
-     * @param string $view the name of the view.
      * @param boolean $template if set to true, also display the template.
      * @return void.
      */
-    public function displayView($view, $template = true)
+    public function displayView($template = true)
     {
+        $view = $this->view;
         $session = new Session();
         $pageTitle = $this->getViewTitle($view);
         $systemMessage = '';

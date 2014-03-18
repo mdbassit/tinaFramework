@@ -7,10 +7,7 @@ defined('tinaFramework') or die;
  * The people controller
  */
 class PeopleController extends Controller
-{
-    // This is set to the view name by index.php
-	public $view;
-	
+{	
     /**
      * The display method is the default method in a controller
      */
@@ -26,6 +23,6 @@ class PeopleController extends Controller
         $this->assign('people', $people);
         
         // Display the view
-        $this->displayView($this->view);
+        $this->displayView();
 	}
 }
