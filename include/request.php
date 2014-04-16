@@ -179,5 +179,6 @@ class Request
         }
         
         header('Location: ' . $url);
+        exit;
     }
 }
