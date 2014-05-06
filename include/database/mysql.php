@@ -83,8 +83,8 @@ class MysqlDB extends DB
                 $guesstype = true;
             }
             foreach ($params as $param) {
-                $query = preg_replace("/(?<!['\"])(\\?)(?!['\"])/", $this->escapeString($param), $query, 1);
                 if ($guesstype) $types .= $this->getBindType(gettype($param));
+                $query = preg_replace("/(?<!['\"])(\\?)(?!['\"])/", $this->escapeString($param), $query, 1);
             }
         }
         
@@ -175,8 +175,8 @@ class MysqlDB extends DB
             $str = stripslashes($str);
         }
         
-        // Quote if not a number or a numeric string
-        if (!is_numeric($str))
+        // Quote if a string
+        if (is_string($str))
         {
              $str = "'" . mysql_real_escape_string($str, $this->link) . "'";
         }
