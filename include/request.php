@@ -85,6 +85,30 @@ class Request
         
         return $file;
     }
+  
+    /**
+     * Fetch a multiple uploaded files and return their data as objects.
+     * 
+     * @param string $var the file name.
+     * @return array the file objects.
+     */
+    public function getFiles($var) 
+    {
+        $files = array();
+      
+        for ($i=0; $i<count($_FILES[$var]['name']); $i++) {
+            $file = new stdClass();
+            $file->name = $_FILES[$var]['name'][$i];
+            $file->type = $_FILES[$var]['type'][$i];
+            $file->tmp_name = $_FILES[$var]['tmp_name'][$i];
+            $file->error = $_FILES[$var]['error'][$i];
+            $file->size = $_FILES[$var]['size'][$i];
+          
+            array_push($files, $file);
+        }
+        
+        return $files;
+    }
     
     /**
      * Get the appropriate view name based on the requested view.

@@ -16,8 +16,14 @@ define('tinaFramework', true);
 define('ROOT_DIR', dirname(__FILE__));
 define('DS', DIRECTORY_SEPARATOR);
 
+// Set the default timezone to use
+date_default_timezone_set('UTC');
+
 // Include the bootstrap
 require_once 'include/bootstrap.php';
+
+// Include the application helper
+require_once 'helper/application.php';
 
 // Initialize the request class
 $request = new Request();
@@ -31,6 +37,10 @@ $defaultView = 'people';
 // Retrieve the view and the action
 $view = $request->getView($defaultView);
 $action = $request->getAction();
+
+// Check that a user is logged in
+$app = new ApplicationHelper();
+$app->requireLogin($view);
 
 // Initialize the controller and call the requested action
 $controller = Controller::load($view);

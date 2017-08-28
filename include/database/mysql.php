@@ -88,9 +88,12 @@ class MysqlDB extends DB
             }
         }
         
+        // WORKAROUND to avoid interpretting question marks in the values as parameters
+        $query = str_replace('?', '&#63;', $query); 
+        
         $result = mysql_query($query, $this->link);
         if (!$result) {
-            die('Invalid query: ' . $this->error());
+            die('Invalid query: ' . $this->error() . '<br><br><strong>Full query:</strong><br>' . $query);
         }
         
         return $result;
@@ -119,7 +122,7 @@ class MysqlDB extends DB
         $i = 0;
         
         while ($obj = mysql_fetch_object($result)) {
-            $obj->_index = $i;
+            //$obj->_index = $i;
             array_push($list, $obj);
             $i++;
         }
@@ -174,6 +177,9 @@ class MysqlDB extends DB
         {
             $str = stripslashes($str);
         }
+        
+        // WORKAROUND to avoid interpretting question marks in the values as parameters
+        $str = str_replace('?', '&#63;', $str); 
         
         // Quote if a string
         if (is_string($str))

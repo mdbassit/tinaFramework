@@ -23,6 +23,11 @@ class Controller
      */
     public $view;
     
+    /**
+     *  This may be set to a custom view title
+     */
+    public $viewTitle;
+    
     
     /**
      * Load the appropriate controller based on the requested view.
@@ -58,16 +63,19 @@ class Controller
      * @param boolean $template if set to true, also display the template.
      * @return void.
      */
-    public function displayView($template = true)
+    public function displayView($includeTemplate = true, $template = DEFAULT_TEMPLATE)
     {
-        $view = $this->view;
         $session = new Session();
-        $pageTitle = $this->getViewTitle($view);
-        $systemMessage = '';
+        $view = new stdClass();
+        $view->name = $this->view;
+        $view->template = $template;
+        $view->pageTitle = ($this->viewTitle) ? $this->viewTitle : $this->getViewTitle($view->name);
+        $view->message = '';
         
         // Assign the variables to the view
         foreach ($this->vars as $key => $value)
         {
+            if ($key == 'view') continue; // Avoid overwritting $view
             $$key = $value;
         }
         
@@ -75,14 +83,14 @@ class Controller
         if ($session->getMessage() != null) {
             $message = $session->getMessage();
             // Is there a better way to to this ?
-            $systemMessage = '<span class="' . $message->type . '">' . $message->content . '</span>';
+            $view->message = '<span class="' . $message->type . '">' . $message->content . '</span>';
             $session->clearMessage();
         }
         
         // Display the view, and optionally the template
-        if ($template) include ROOT_DIR . '/template/' . DEFAULT_TEMPLATE . '/header.php';
-        include ROOT_DIR . '/view/' . $view . '.php';
-        if ($template) include ROOT_DIR . '/template/' . DEFAULT_TEMPLATE . '/footer.php';
+        if ($includeTemplate) include ROOT_DIR . '/template/' . $view->template . '/header.php';
+        include ROOT_DIR . '/view/' . $view->name . '.php';
+        if ($includeTemplate) include ROOT_DIR . '/template/' . $view->template . '/footer.php';
     }
     
     /**

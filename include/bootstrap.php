@@ -23,10 +23,12 @@ defined('DEFAULT_TEMPLATE') or define('DEFAULT_TEMPLATE', 'default');
 session_start();
 
 // Include the needed classes
+require_once ROOT_DIR . '/include/lang.php';
 require_once ROOT_DIR . '/include/database.php';
 require_once ROOT_DIR . '/include/controller.php';
 require_once ROOT_DIR . '/include/model.php';
 require_once ROOT_DIR . '/include/session.php';
 require_once ROOT_DIR . '/include/request.php';
+require_once ROOT_DIR . '/include/external.php';
 
 // TODO : Implement a class autoloader
