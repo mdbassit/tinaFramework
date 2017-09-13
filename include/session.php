@@ -22,7 +22,11 @@ class Session
      */
     public function set($var, $value) 
     {
-        $_SESSION[$var] = $value;
+        if (!isset($_SESSION[SESSION_KEY])) {
+            $_SESSION[SESSION_KEY] = array();
+        }
+        
+        $_SESSION[SESSION_KEY][$var] = $value;
     }
     
     /**
@@ -33,7 +37,11 @@ class Session
      */
     public function get($var) 
     {
-        return $_SESSION[$var];
+        if (!isset($_SESSION[SESSION_KEY])) {
+            $_SESSION[SESSION_KEY] = array();
+        }
+        
+        return $_SESSION[SESSION_KEY][$var];
     }
     
     /**

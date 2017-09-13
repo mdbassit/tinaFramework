@@ -31,6 +31,9 @@ $request = new Request();
 // Set the base URL
 define('BASE_URL', $request->getBaseURL());
 
+// Set the session key based on the base URL
+define('SESSION_KEY', sha1(BASE_URL));
+
 // Set the default view to people (normally it's home)
 $defaultView = 'people';
 
